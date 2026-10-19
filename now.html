@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Now &middot; Bennett Steg</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="now.html" class="active">Now</a>
+      <a href="interests.html">Interests</a>
+      <a href="skills.html">Skills</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Now</h1>
+    <p>What I'm currently working on or exploring.</p>
+
+    <article>
+      <h2>Portfolio site</h2>
+      <p data-desc="portfolio-site">Loading&hellip;</p>
+    </article>
+  </main>
+
+  <script src="js/data-loader.js"></script>
+  <script>
+    loadDescriptions("data/now.json");
+  </script>
+</body>
+</html>

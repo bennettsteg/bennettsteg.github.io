@@ -1,0 +1,3 @@
+# Plain static HTML/CSS/JS, no Jekyll
+
+GitHub created this repo with `theme: jekyll-theme-minimal` in `_config.yml`, and GitHub Pages is actively building it with the legacy Jekyll processor by default. We're deliberately removing that: `_config.yml` is deleted and a `.nojekyll` file is added, so Pages serves files raw with no build step. We chose this over keeping Jekyll (which would've given free theming, Liquid includes for shared nav, and `_data/*.yml` for content without `fetch()`/CORS concerns) because the goal is a genuinely simple static site in vanilla HTML/CSS/JS, not a templated/build-step site — and that tradeoff means content JSON is fetched at runtime, so local preview requires a local HTTP server rather than opening the file directly.
