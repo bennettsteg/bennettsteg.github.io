@@ -4,12 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bennett Steg</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;550;600;650&family=Geist+Mono&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <header class="site-header">
     <nav>
-      <a href="index.html" class="active">Home</a>
+      <a href="index.html" class="brand">Bennett Steg</a>
+      <button class="nav-toggle" type="button" aria-expanded="false">Menu</button>
       <a href="projects.html">Projects</a>
       <a href="now.html">Now</a>
       <a href="interests.html">Interests</a>
@@ -18,17 +22,31 @@
   </header>
 
   <main>
-    <h1>Bennett Steg</h1>
-    <p>Add your bio here — a couple of sentences about who you are.</p>
+    <section>
+      <p class="eyebrow">Information Systems &middot; IT &middot; Security</p>
+      <h1>Bennett Steg</h1>
+      <p class="lead">Add your bio here &mdash; a couple of sentences about who you are.</p>
+      <div class="actions">
+        <a class="button button-primary" href="now.html">What I'm working on</a>
+        <a class="button button-secondary" href="projects.html">Projects</a>
+      </div>
+    </section>
 
-    <h2>What I'm doing right now</h2>
-    <article>
-      <h3>Portfolio site</h3>
-      <p data-desc="portfolio-site">Loading&hellip;</p>
-      <p><a href="now.html">See everything I'm working on &rarr;</a></p>
-    </article>
+    <section>
+      <div class="section-head">
+        <h2>What I'm doing right now</h2>
+      </div>
+      <article>
+        <h3>Portfolio site</h3>
+        <p data-desc="portfolio-site">Loading&hellip;</p>
+        <p><a href="now.html">See everything I'm working on &rarr;</a></p>
+      </article>
+    </section>
   </main>
 
+  <footer class="site-footer">&copy; Bennett Steg</footer>
+
+  <script src="js/nav.js"></script>
   <script src="js/data-loader.js"></script>
   <script>
     loadDescriptions("data/now.json");

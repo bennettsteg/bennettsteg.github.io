@@ -4,12 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Now &middot; Bennett Steg</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;550;600;650&family=Geist+Mono&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <header class="site-header">
     <nav>
-      <a href="index.html">Home</a>
+      <a href="index.html" class="brand">Bennett Steg</a>
+      <button class="nav-toggle" type="button" aria-expanded="false">Menu</button>
       <a href="projects.html">Projects</a>
       <a href="now.html" class="active">Now</a>
       <a href="interests.html">Interests</a>
@@ -18,8 +22,9 @@
   </header>
 
   <main>
+    <p class="eyebrow">Now</p>
     <h1>Now</h1>
-    <p>What I'm currently working on or exploring.</p>
+    <p class="lead">What I'm currently working on or exploring.</p>
 
     <article>
       <h2>Portfolio site</h2>
@@ -27,6 +32,9 @@
     </article>
   </main>
 
+  <footer class="site-footer">&copy; Bennett Steg</footer>
+
+  <script src="js/nav.js"></script>
   <script src="js/data-loader.js"></script>
   <script>
     loadDescriptions("data/now.json");
