@@ -108,10 +108,19 @@ p {
 
 .lead {
   max-width: 40rem;
-  margin-top: var(--gutter);
+  margin-top: 12px;
   font-size: 1.25rem;
   line-height: 1.45;
   letter-spacing: -0.0125em;
+}
+
+/* Projects page: larger project card title and repo link */
+.page-projects article h3 {
+  font-size: 1.875rem;
+}
+
+.page-projects article .meta {
+  font-size: 1rem;
 }
 
 /* Navigation */
@@ -181,6 +190,11 @@ main {
 
 main > section + section {
   margin-top: var(--section);
+}
+
+/* The page lead belongs to the page title, so set it apart from the first section */
+main > .lead + section {
+  margin-top: 48px;
 }
 
 .section-head {
@@ -281,8 +295,10 @@ article p + p {
 }
 
 article .meta {
+  margin: -4px 0 16px;
   color: var(--ink-subtle);
   font-size: 0.75rem;
+  font-family: var(--font-mono);
 }
 
 .tags {
@@ -301,6 +317,70 @@ article .meta {
   border-radius: var(--radius-sm);
   font-size: 0.75rem;
   line-height: 1.4;
+}
+
+/* Section navigation cards (home) */
+.section-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.section-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 16px 24px;
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  color: var(--ink);
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.section-card:hover {
+  background: var(--surface-2);
+  border-color: var(--hairline-strong);
+  color: var(--ink);
+}
+
+.section-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  margin-bottom: 8px;
+  background: var(--surface-2);
+  border-radius: var(--radius-md);
+  transition: transform var(--transition);
+}
+
+.section-card:hover img {
+  transform: scale(1.02);
+}
+
+.section-card h3,
+.section-card p,
+.section-card .arrow {
+  padding: 0 8px;
+}
+
+.section-card p {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.section-card .arrow {
+  margin-top: auto;
+  padding-top: 8px;
+  color: var(--primary);
+}
+
+.link-list {
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
 }
 
 /* Footer */

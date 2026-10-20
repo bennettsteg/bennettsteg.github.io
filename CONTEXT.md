@@ -2,6 +2,10 @@
 
 A personal portfolio published via GitHub Pages, showcasing projects, current work, interests, and technical skills. Content grows continuously over time.
 
+## Sections
+
+Each section is its own page, reachable from Home: Projects (GitHub projects and software), Homelab & Infrastructure, Technologies & Skills, About Me (includes Now and Interests), and Contact & Resume.
+
 ## Language
 
 **Project**:

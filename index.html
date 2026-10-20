@@ -3,53 +3,67 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bennett Steg</title>
+  <title>Bennett Steg Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;550;600;650&family=Geist+Mono&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <header class="site-header">
-    <nav>
-      <a href="index.html" class="brand">Bennett Steg</a>
-      <button class="nav-toggle" type="button" aria-expanded="false">Menu</button>
-      <a href="projects.html">Projects</a>
-      <a href="now.html">Now</a>
-      <a href="interests.html">Interests</a>
-      <a href="skills.html">Skills</a>
-    </nav>
-  </header>
+  <script src="js/header.js"></script>
 
   <main>
     <section>
       <p class="eyebrow">Information Systems &middot; IT &middot; Security</p>
-      <h1>Bennett Steg</h1>
-      <p class="lead">Add your bio here &mdash; a couple of sentences about who you are.</p>
+      <h1>Bennett Steg Portfolio</h1>
+      <p class="lead">Hi I'm Bennett! An MIS Major Interested in Cybersecurity, Software Development and General IT Work</p>
       <div class="actions">
-        <a class="button button-primary" href="now.html">What I'm working on</a>
-        <a class="button button-secondary" href="projects.html">Projects</a>
+        <a class="button button-primary" href="projects.html">Projects</a>
+        <a class="button button-secondary" href="contact.html">Contact &amp; Resume</a>
       </div>
     </section>
 
     <section>
       <div class="section-head">
-        <h2>What I'm doing right now</h2>
+        <h2>Explore</h2>
       </div>
-      <article>
-        <h3>Portfolio site</h3>
-        <p data-desc="portfolio-site">Loading&hellip;</p>
-        <p><a href="now.html">See everything I'm working on &rarr;</a></p>
-      </article>
+      <div class="section-grid">
+        <a class="section-card" href="about.html">
+          <img src="img/about.jpg" alt="Overhead view of a dark desk with a laptop, notebook, pen, and coffee" width="1000" height="625" loading="lazy" />
+          <h3>About Me</h3>
+          <p>Who I am and what I'm working on.</p>
+          <span class="arrow" aria-hidden="true">&rarr;</span>
+        </a>
+        <a class="section-card" href="projects.html">
+          <img src="img/projects.jpg" alt="Source code open in a dark-themed code editor" width="1000" height="625" loading="lazy" />
+          <h3>Projects</h3>
+          <p>GitHub projects and software I've built.</p>
+          <span class="arrow" aria-hidden="true">&rarr;</span>
+        </a>
+        <a class="section-card" href="homelab.html">
+          <img src="img/homelab.jpg" alt="Ethernet cables plugged into a network switch" width="1000" height="625" loading="lazy" />
+          <h3>Homelab &amp; Infrastructure</h3>
+          <p>Hardware, networking, and self-hosted services.</p>
+          <span class="arrow" aria-hidden="true">&rarr;</span>
+        </a>
+        <a class="section-card" href="skills.html">
+          <img src="img/skills.jpg" alt="Person working at a monitor showing a network topology dashboard and live log output" width="1000" height="625" loading="lazy" />
+          <h3>Technologies &amp; Skills</h3>
+          <p>Tools and technologies I work with.</p>
+          <span class="arrow" aria-hidden="true">&rarr;</span>
+        </a>
+        <a class="section-card" href="contact.html">
+          <img src="img/contact.jpg" alt="A dark contact page with links and a name, email, subject, and message form" width="1000" height="625" loading="lazy" />
+          <h3>Contact &amp; Resume</h3>
+          <p>Get in touch or view my resume.</p>
+          <span class="arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer">&copy; Bennett Steg</footer>
 
   <script src="js/nav.js"></script>
-  <script src="js/data-loader.js"></script>
-  <script>
-    loadDescriptions("data/now.json");
-  </script>
 </body>
 </html>
