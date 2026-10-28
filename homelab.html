@@ -19,14 +19,81 @@
 
     <section>
       <div class="section-head">
+        <h2>The server</h2>
+        <p>Select a label to see the part. Click anywhere else to close it.</p>
+      </div>
+      <!-- To edit a part: change its <article> here (name, text, photo in img/parts/). Its position on the 3D case lives in js/homelab-viewer.js (PARTS, matched by data-part). -->
+      <div class="lab-explorer">
+        <div class="lab-stage" role="group" aria-label="Interactive 3D model of the homelab case" hidden></div>
+        <div class="lab-detail" aria-live="polite">
+          <p class="lab-prompt" hidden>Select a component on the case to see what it is.</p>
+          <div class="lab-parts">
+            <article data-part="cpu">
+              <img src="img/parts/cpu.jpg" alt="AMD Ryzen 7 5700G retail box" loading="lazy" />
+              <h3>CPU</h3>
+              <p class="meta">AMD Ryzen 7 5700G</p>
+              <p>The processor that runs every service on the server: 8 cores and 16 threads, with integrated Radeon graphics so no separate GPU is needed.</p>
+            </article>
+            <article data-part="ram">
+              <img src="img/parts/ram.jpg" alt="Corsair Vengeance LPX DDR4 memory modules" loading="lazy" />
+              <h3>RAM</h3>
+              <p class="meta">Corsair Vengeance DDR4 16GB</p>
+              <p>Working memory for the server's services and virtual machines.</p>
+            </article>
+            <article data-part="cooler">
+              <img src="img/parts/cooler.jpg" alt="Thermalright Assassin X120 CPU cooler" loading="lazy" />
+              <h3>Cooler</h3>
+              <p class="meta">Thermalright Assassin X120</p>
+              <p>A single-tower air cooler with a 120&nbsp;mm fan that keeps the CPU at a steady temperature.</p>
+            </article>
+            <article data-part="motherboard">
+              <img src="img/parts/motherboard.jpg" alt="GIGABYTE B550M AORUS Elite AX motherboard" loading="lazy" />
+              <h3>Motherboard</h3>
+              <p class="meta">GIGABYTE B550M AORUS Elite AX</p>
+              <p>A micro-ATX AM4 board with built-in Wi-Fi 6 that connects the CPU, memory, storage, and network.</p>
+            </article>
+            <article data-part="m2">
+              <img src="img/parts/m2.jpg" alt="Samsung 9100 PRO M.2 SSD" loading="lazy" />
+              <h3>M.2 SSD</h3>
+              <p class="meta">Samsung 9100 PRO 1TB</p>
+              <p>A fast NVMe drive that holds the operating system and the services that need quick storage.</p>
+            </article>
+            <article data-part="psu">
+              <img src="img/parts/psu.jpg" alt="Corsair RM750e power supply" loading="lazy" />
+              <h3>Power supply</h3>
+              <p class="meta">Corsair RM750e</p>
+              <p>A 750&nbsp;W fully modular power supply, so only the cables the build needs are plugged in.</p>
+            </article>
+            <article data-part="drives">
+              <img src="img/parts/drives.jpg" alt="Seagate IronWolf 4TB hard drive" loading="lazy" />
+              <h3>Drive bay</h3>
+              <p class="meta">Seagate IronWolf 4TB</p>
+              <p>Bulk storage behind the wooden front door. It's a single NAS-rated hard drive for now, with room in the case to add more.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
         <h2>Coming soon.</h2>
       </div>
-      <p>Hardware, networking, and self-hosted services will be documented here.</p>
+      <p>Networking and self-hosted services will be documented here.</p>
     </section>
   </main>
 
   <footer class="site-footer">&copy; Bennett Steg</footer>
 
   <script src="js/nav.js"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module" src="js/homelab-viewer.js"></script>
 </body>
 </html>
