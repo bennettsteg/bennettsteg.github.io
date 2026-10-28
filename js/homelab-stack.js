@@ -20,6 +20,7 @@
   explorer.classList.add("is-enhanced");
   articles.forEach((a) => (a.hidden = true));
   if (prompt) prompt.hidden = false;
+  document.documentElement.classList.remove("stack-pending");
 
   let activeId = null;
 
@@ -35,9 +36,8 @@
 
   function select(id) {
     setActive(id);
-    // When the description sits below the diagram (narrow screens), bring it into view.
-    const stacked = getComputedStyle(explorer).gridTemplateColumns.split(" ").length === 1;
-    if (stacked) detail.scrollIntoView({ behavior: reduceMotion.matches ? "auto" : "smooth", block: "nearest" });
+    // The description sits below the diagram; scroll it into view if it isn't already.
+    detail.scrollIntoView({ behavior: reduceMotion.matches ? "auto" : "smooth", block: "nearest" });
   }
 
   function deselect() {

@@ -8,6 +8,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;550;600;650&family=Geist+Mono&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <script>
+    // Hide the plain-list fallbacks until the interactive views take over, so they don't flash on load.
+    // The scripts clear these flags themselves; the timer reveals the fallbacks if they never run.
+    document.documentElement.classList.add("lab-pending", "stack-pending");
+    setTimeout(function () {
+      document.documentElement.classList.remove("lab-pending", "stack-pending");
+    }, 5000);
+  </script>
 </head>
 <body>
   <script src="js/header.js"></script>
@@ -80,48 +88,67 @@
         <h2>What it runs</h2>
         <p>Everything on the server, from the hypervisor down to each service. Select a box to read about it.</p>
       </div>
-      <!-- To edit a box: change its <a> in the diagram and its <article> below, matched by data-node. Boxes are nested to show what runs inside what; the lines from Proxmox are drawn by js/homelab-stack.js. -->
+      <!-- To edit a box: change its <a> in the diagram and its <article> below, matched by data-node. Boxes are nested to show what runs inside what; the lines from Proxmox are drawn by js/homelab-stack.js. Icons come from dashboardicons.com and live in img/icons/; to add one, put an <img class="stack-icon" ...> before the <span class="stack-text"> in the box. The description appears below the diagram and has room for more paragraphs and images: add <p> or <figure><img ...></figure> inside the <article>. -->
       <div class="stack-explorer">
         <div class="stack-diagram" role="group" aria-label="Diagram of the software running on the homelab">
           <svg class="stack-links" aria-hidden="true"><path class="stack-link" /></svg>
           <div class="stack-root">
             <a class="stack-node stack-node-root" href="#stack-proxmox" data-node="proxmox">
-              <span class="stack-name">Proxmox VE</span>
-              <span class="stack-kind">Hypervisor</span>
+              <img class="stack-icon" src="img/icons/proxmox.svg" alt="" width="28" height="28" />
+              <span class="stack-text">
+                <span class="stack-name">Proxmox VE</span>
+                <span class="stack-kind">Hypervisor</span>
+              </span>
             </a>
           </div>
           <div class="stack-branches">
             <div class="stack-group">
               <a class="stack-node stack-node-head" href="#stack-docker-vm" data-node="docker-vm">
-                <span class="stack-name">Docker VM</span>
-                <span class="stack-kind">Virtual machine</span>
+                <span class="stack-text">
+                  <span class="stack-name">Docker VM</span>
+                  <span class="stack-kind">Virtual machine</span>
+                </span>
               </a>
-              <a class="stack-node" href="#stack-tailscale" data-node="tailscale">
-                <span class="stack-name">Tailscale</span>
-                <span class="stack-kind">Remote access VPN</span>
-              </a>
-              <div class="stack-group stack-group-inner">
-                <a class="stack-node stack-node-head" href="#stack-docker" data-node="docker">
-                  <span class="stack-name">Docker</span>
-                  <span class="stack-kind">Container runtime &middot; 9 stacks</span>
-                </a>
-                <ul class="stack-tiles">
-                  <li><a class="stack-node stack-tile" href="#stack-homepage" data-node="homepage"><span class="stack-name">Homepage</span></a></li>
-                  <li><a class="stack-node stack-tile" href="#stack-nextcloud" data-node="nextcloud"><span class="stack-name">Nextcloud</span></a></li>
-                  <li><a class="stack-node stack-tile" href="#stack-nginx-proxy-manager" data-node="nginx-proxy-manager"><span class="stack-name">Nginx Proxy Manager</span></a></li>
-                  <li><a class="stack-node stack-tile" href="#stack-pgadmin" data-node="pgadmin"><span class="stack-name">pgAdmin</span></a></li>
-                  <li><a class="stack-node stack-tile" href="#stack-pi-hole" data-node="pi-hole"><span class="stack-name">Pi-hole</span></a></li>
-                  <li><a class="stack-node stack-tile" href="#stack-postgres" data-node="postgres"><span class="stack-name">Postgres</span></a></li>
-                  <li><a class="stack-node stack-tile" href="#stack-student-dashboard" data-node="student-dashboard"><span class="stack-name">Student Dashboard</span></a></li>
-                  <li><a class="stack-node stack-tile" href="#stack-study-tool" data-node="study-tool"><span class="stack-name">Study Tool</span></a></li>
-                  <li><a class="stack-node stack-tile" href="#stack-beszel" data-node="beszel"><span class="stack-name">Beszel</span></a></li>
-                </ul>
+              <div class="stack-row">
+                <div class="stack-group stack-group-inner">
+                  <a class="stack-node stack-node-head" href="#stack-tailscale" data-node="tailscale">
+                    <img class="stack-icon" src="img/icons/tailscale.svg" alt="" width="28" height="28" />
+                    <span class="stack-text">
+                      <span class="stack-name">Tailscale</span>
+                      <span class="stack-kind">Remote access VPN</span>
+                    </span>
+                  </a>
+                  <p class="stack-group-text">Puts the Docker VM on my private Tailscale network.</p>
+                </div>
+                <div class="stack-group stack-group-inner">
+                  <a class="stack-node stack-node-head" href="#stack-docker" data-node="docker">
+                    <img class="stack-icon" src="img/icons/docker.svg" alt="" width="28" height="28" />
+                    <span class="stack-text">
+                      <span class="stack-name">Docker</span>
+                      <span class="stack-kind">Container runtime</span>
+                    </span>
+                  </a>
+                  <ul class="stack-tiles">
+                    <li><a class="stack-node stack-tile" href="#stack-homepage" data-node="homepage"><img class="stack-icon" src="img/icons/homepage.png" alt="" width="28" height="28" /><span class="stack-text"><span class="stack-name">Homepage</span></span></a></li>
+                    <li><a class="stack-node stack-tile" href="#stack-nextcloud" data-node="nextcloud"><img class="stack-icon" src="img/icons/nextcloud.svg" alt="" width="28" height="28" /><span class="stack-text"><span class="stack-name">Nextcloud</span></span></a></li>
+                    <li><a class="stack-node stack-tile" href="#stack-nginx-proxy-manager" data-node="nginx-proxy-manager"><img class="stack-icon" src="img/icons/nginx-proxy-manager.svg" alt="" width="28" height="28" /><span class="stack-text"><span class="stack-name">Nginx Proxy Manager</span></span></a></li>
+                    <li><a class="stack-node stack-tile" href="#stack-pgadmin" data-node="pgadmin"><img class="stack-icon" src="img/icons/pgadmin.svg" alt="" width="28" height="28" /><span class="stack-text"><span class="stack-name">pgAdmin</span></span></a></li>
+                    <li><a class="stack-node stack-tile" href="#stack-pi-hole" data-node="pi-hole"><img class="stack-icon" src="img/icons/pi-hole.svg" alt="" width="28" height="28" /><span class="stack-text"><span class="stack-name">Pi-hole</span></span></a></li>
+                    <li><a class="stack-node stack-tile" href="#stack-postgres" data-node="postgres"><img class="stack-icon" src="img/icons/postgres.svg" alt="" width="28" height="28" /><span class="stack-text"><span class="stack-name">Postgres</span></span></a></li>
+                    <li><a class="stack-node stack-tile" href="#stack-student-dashboard" data-node="student-dashboard"><span class="stack-text"><span class="stack-name">Student Dashboard</span></span></a></li>
+                    <li><a class="stack-node stack-tile" href="#stack-study-tool" data-node="study-tool"><span class="stack-text"><span class="stack-name">Study Tool</span></span></a></li>
+                    <li><a class="stack-node stack-tile" href="#stack-beszel" data-node="beszel"><img class="stack-icon" src="img/icons/beszel.svg" alt="" width="28" height="28" /><span class="stack-text"><span class="stack-name">Beszel</span></span></a></li>
+                    <li><a class="stack-node stack-tile" href="#stack-portainer" data-node="portainer"><img class="stack-icon" src="img/icons/portainer.svg" alt="" width="28" height="28" /><span class="stack-text"><span class="stack-name">Portainer</span></span></a></li>
+                  </ul>
+                </div>
               </div>
             </div>
             <div class="stack-group">
               <a class="stack-node stack-node-head" href="#stack-moonlight" data-node="moonlight">
-                <span class="stack-name">Streaming container</span>
-                <span class="stack-kind">Lightweight container</span>
+                <span class="stack-text">
+                  <span class="stack-name">Streaming container</span>
+                  <span class="stack-kind">Lightweight container</span>
+                </span>
               </a>
             </div>
           </div>
@@ -133,6 +160,7 @@
               <h3>Proxmox VE</h3>
               <p class="meta">Hypervisor</p>
               <p>The foundation of the homelab. Proxmox runs directly on the server hardware and hosts everything else as virtual machines and containers: a Docker VM and a small streaming container.</p>
+              <figure><img src="img/stack/proxmox.jpg" alt="Proxmox VE web interface listing the Docker VM, the streaming container, and the server's storage" width="1600" height="799" loading="lazy" /></figure>
             </article>
             <article id="stack-docker-vm" data-node="docker-vm">
               <h3>Docker VM</h3>
@@ -152,12 +180,19 @@
             <article id="stack-docker" data-node="docker">
               <h3>Docker</h3>
               <p class="meta">Container runtime &middot; in the Docker VM</p>
-              <p>Runs each service as an isolated container, grouped into nine stacks.</p>
+              <p>Runs each service as an isolated container, grouped into nine stacks, and managed with Portainer.</p>
+            </article>
+            <article id="stack-portainer" data-node="portainer">
+              <h3>Portainer</h3>
+              <p class="meta">Docker management &middot; in Docker</p>
+              <p>A web interface for managing Docker: stacks, containers, images, and volumes, all from the browser.</p>
+              <figure><img src="img/stack/portainer.jpg" alt="Portainer showing the Docker environment with 9 stacks and 15 containers" width="1600" height="799" loading="lazy" /></figure>
             </article>
             <article id="stack-homepage" data-node="homepage">
               <h3>Homepage</h3>
               <p class="meta">Docker stack &middot; in Docker</p>
               <p>A dashboard that puts links and status for all my services on one page.</p>
+              <figure><img src="img/stack/homepage.jpg" alt="Homepage dashboard with system stats and tiles for Pi-hole, Nginx, Portainer, Student Activities, Nextcloud, and Beszel" width="1600" height="801" loading="lazy" /></figure>
             </article>
             <article id="stack-nextcloud" data-node="nextcloud">
               <h3>Nextcloud</h3>
@@ -168,16 +203,19 @@
               <h3>Nginx Proxy Manager</h3>
               <p class="meta">Docker stack &middot; in Docker</p>
               <p>A reverse proxy with a web interface. It routes each service's address to the right container and handles SSL certificates.</p>
+              <figure><img src="img/stack/nginx-proxy-manager.jpg" alt="Nginx Proxy Manager dashboard showing 9 proxy hosts" width="1600" height="797" loading="lazy" /></figure>
             </article>
             <article id="stack-pgadmin" data-node="pgadmin">
               <h3>pgAdmin</h3>
               <p class="meta">Docker stack &middot; in Docker</p>
               <p>A web interface for managing and querying PostgreSQL databases.</p>
+              <figure><img src="img/stack/pgadmin.jpg" alt="pgAdmin connected to the Homelab PostgreSQL server, with the nextcloud, postgres, student_dashboard, and study_tool databases" width="1600" height="800" loading="lazy" /></figure>
             </article>
             <article id="stack-pi-hole" data-node="pi-hole">
               <h3>Pi-hole</h3>
               <p class="meta">Docker stack &middot; in Docker</p>
               <p>A network-wide DNS sinkhole that blocks ads and trackers for every device that uses it for DNS.</p>
+              <figure><img src="img/stack/pi-hole.jpg" alt="Pi-hole admin dashboard showing total queries, queries blocked, and query activity charts" width="1600" height="804" loading="lazy" /></figure>
             </article>
             <article id="stack-postgres" data-node="postgres">
               <h3>Postgres</h3>
@@ -187,17 +225,20 @@
             <article id="stack-student-dashboard" data-node="student-dashboard">
               <h3>Student Dashboard</h3>
               <p class="meta">Docker stack &middot; in Docker</p>
-              <p>My Student Dashboard app, self-hosted. It's also on the <a href="projects.html">Projects</a> page.</p>
+              <p>My StudyDesk dashboard, self-hosted. It brings my assignments, courses, notifications, and schedule together in one place. It's also on the <a href="projects.html">Projects</a> page.</p>
+              <figure><img src="img/stack/student-dashboard.jpg" alt="StudyDesk dashboard showing assignments, notifications, this week's calendar, and courses" width="1600" height="801" loading="lazy" /></figure>
             </article>
             <article id="stack-study-tool" data-node="study-tool">
               <h3>Study Tool</h3>
               <p class="meta">Docker stack &middot; in Docker</p>
-              <p>My own study tool, self-hosted alongside the rest of the stack.</p>
+              <p>My practice-test app for studying. I build tests from course chapters, take them, and review my attempts.</p>
+              <figure><img src="img/stack/study-tool.jpg" alt="Practice Tests app listing chapter practice tests with question counts and attempts" width="1600" height="809" loading="lazy" /></figure>
             </article>
             <article id="stack-beszel" data-node="beszel">
               <h3>Beszel</h3>
               <p class="meta">Docker stack &middot; in Docker</p>
               <p>A lightweight monitoring hub that tracks CPU, memory, disk, and container stats for the server.</p>
+              <figure><img src="img/stack/beszel.jpg" alt="Beszel dashboard listing the server with its CPU, memory, and disk usage" width="1600" height="799" loading="lazy" /></figure>
             </article>
           </div>
         </div>
@@ -223,7 +264,7 @@
       }
     }
   </script>
-  <script type="module" src="js/homelab-viewer.js"></script>
+  <script type="module" src="js/homelab-viewer.js" onerror="document.documentElement.classList.remove('lab-pending')"></script>
   <script src="js/homelab-stack.js"></script>
 </body>
 </html>

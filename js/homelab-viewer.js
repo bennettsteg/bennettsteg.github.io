@@ -40,6 +40,7 @@ if (stage && articles.length > 0) {
     // No WebGL (or similar): leave the plain list of parts visible.
     console.error("homelab-viewer: couldn't start the 3D view", err);
     stage.hidden = true;
+    document.documentElement.classList.remove("lab-pending");
   }
 }
 
@@ -131,6 +132,7 @@ function init() {
   explorer.classList.add("is-enhanced");
   if (prompt) prompt.hidden = false;
   articles.forEach((a) => (a.hidden = true));
+  document.documentElement.classList.remove("lab-pending");
 
   // --- Selection and camera moves ---
   let activeId = null;

@@ -383,8 +383,22 @@ article .meta {
   gap: 16px;
 }
 
-.lab-explorer.is-enhanced {
+.lab-explorer.is-enhanced,
+.lab-pending .lab-explorer {
   grid-template-columns: minmax(0, 1fr) 320px;
+}
+
+/* While the 3D view loads: show its empty frame (no layout jump) and hold back the fallback list */
+.lab-pending .lab-stage[hidden] {
+  display: block;
+}
+
+.lab-pending .lab-parts {
+  display: none;
+}
+
+.stack-pending .stack-articles {
+  display: none;
 }
 
 .lab-stage {
@@ -502,10 +516,6 @@ article .meta {
   gap: 16px;
 }
 
-.stack-explorer.is-enhanced {
-  grid-template-columns: minmax(0, 1fr) 320px;
-}
-
 .stack-diagram {
   position: relative;
   padding: 24px;
@@ -542,7 +552,7 @@ article .meta {
 
 .stack-branches {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 3fr 1fr;
   gap: 24px;
   align-items: start;
 }
@@ -561,11 +571,23 @@ article .meta {
   background: var(--surface-1);
 }
 
+/* Tailscale and Docker: equal width and height side by side inside the VM */
+.stack-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.stack-group-text {
+  padding: 0 4px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
 .stack-node {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2px;
+  align-items: center;
+  gap: 10px;
   min-height: 44px;
   padding: 8px 14px;
   background: var(--surface-3);
@@ -584,6 +606,29 @@ article .meta {
   background: var(--primary);
   border-color: var(--primary);
   color: var(--on-primary);
+}
+
+.stack-icon {
+  flex: none;
+  box-sizing: border-box;
+  width: 28px;
+  height: 28px;
+  padding: 3px;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+}
+
+/* Light icons would vanish on the lime selected state, so they get a dark chip there */
+.stack-node[aria-current="true"] .stack-icon {
+  background: var(--surface-1);
+}
+
+.stack-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
 }
 
 .stack-name {
@@ -606,7 +651,7 @@ article .meta {
 
 .stack-tiles {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
   gap: 8px;
   margin: 0;
   padding: 0;
@@ -617,14 +662,51 @@ article .meta {
   height: 100%;
 }
 
+/* Tiles are narrow, so the icon sits above the name */
+.stack-tile {
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  min-height: 76px;
+  padding: 10px 8px;
+  text-align: center;
+}
+
+.stack-tile .stack-text {
+  align-items: center;
+}
+
 .stack-prompt {
   padding: 24px;
   border: 1px dashed var(--hairline-strong);
   border-radius: var(--radius-lg);
 }
 
+/* The description sits below the diagram at full width, with room for more text and images */
+.stack-articles article {
+  padding: 28px;
+}
+
 .stack-articles article[hidden] {
   display: none;
+}
+
+.stack-articles article p {
+  max-width: 46rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.stack-articles article figure {
+  margin: 20px 0 0;
+}
+
+.stack-articles article img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius-md);
 }
 
 .link-list {
@@ -679,12 +761,18 @@ footer.site-footer {
 
 @media (max-width: 900px) {
   .lab-explorer.is-enhanced,
-  .stack-explorer.is-enhanced {
+  .lab-pending .lab-explorer {
     grid-template-columns: minmax(0, 1fr);
   }
 
   .lab-stage {
     height: clamp(360px, 90vw, 480px);
+  }
+}
+
+@media (max-width: 900px) {
+  .stack-row {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -709,10 +797,6 @@ footer.site-footer {
   .lab-label {
     padding: 6px 10px;
     font-size: 0.8125rem;
-  }
-
-  .stack-tiles {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
