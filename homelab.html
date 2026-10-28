@@ -77,9 +77,138 @@
 
     <section>
       <div class="section-head">
+        <h2>What it runs</h2>
+        <p>Everything on the server, from the hypervisor down to each service. Select a box to read about it.</p>
+      </div>
+      <!-- To edit a box: change its <a> in the diagram and its <article> below, matched by data-node. Boxes are nested to show what runs inside what; the lines from Proxmox are drawn by js/homelab-stack.js. -->
+      <div class="stack-explorer">
+        <div class="stack-diagram" role="group" aria-label="Diagram of the software running on the homelab">
+          <svg class="stack-links" aria-hidden="true"><path class="stack-link" /></svg>
+          <div class="stack-root">
+            <a class="stack-node stack-node-root" href="#stack-proxmox" data-node="proxmox">
+              <span class="stack-name">Proxmox VE</span>
+              <span class="stack-kind">Hypervisor</span>
+            </a>
+          </div>
+          <div class="stack-branches">
+            <div class="stack-group">
+              <a class="stack-node stack-node-head" href="#stack-docker-vm" data-node="docker-vm">
+                <span class="stack-name">Docker VM</span>
+                <span class="stack-kind">Virtual machine</span>
+              </a>
+              <a class="stack-node" href="#stack-tailscale" data-node="tailscale">
+                <span class="stack-name">Tailscale</span>
+                <span class="stack-kind">Remote access VPN</span>
+              </a>
+              <div class="stack-group stack-group-inner">
+                <a class="stack-node stack-node-head" href="#stack-docker" data-node="docker">
+                  <span class="stack-name">Docker</span>
+                  <span class="stack-kind">Container runtime &middot; 9 stacks</span>
+                </a>
+                <ul class="stack-tiles">
+                  <li><a class="stack-node stack-tile" href="#stack-homepage" data-node="homepage"><span class="stack-name">Homepage</span></a></li>
+                  <li><a class="stack-node stack-tile" href="#stack-nextcloud" data-node="nextcloud"><span class="stack-name">Nextcloud</span></a></li>
+                  <li><a class="stack-node stack-tile" href="#stack-nginx-proxy-manager" data-node="nginx-proxy-manager"><span class="stack-name">Nginx Proxy Manager</span></a></li>
+                  <li><a class="stack-node stack-tile" href="#stack-pgadmin" data-node="pgadmin"><span class="stack-name">pgAdmin</span></a></li>
+                  <li><a class="stack-node stack-tile" href="#stack-pi-hole" data-node="pi-hole"><span class="stack-name">Pi-hole</span></a></li>
+                  <li><a class="stack-node stack-tile" href="#stack-postgres" data-node="postgres"><span class="stack-name">Postgres</span></a></li>
+                  <li><a class="stack-node stack-tile" href="#stack-student-dashboard" data-node="student-dashboard"><span class="stack-name">Student Dashboard</span></a></li>
+                  <li><a class="stack-node stack-tile" href="#stack-study-tool" data-node="study-tool"><span class="stack-name">Study Tool</span></a></li>
+                  <li><a class="stack-node stack-tile" href="#stack-beszel" data-node="beszel"><span class="stack-name">Beszel</span></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="stack-group">
+              <a class="stack-node stack-node-head" href="#stack-moonlight" data-node="moonlight">
+                <span class="stack-name">Streaming container</span>
+                <span class="stack-kind">Lightweight container</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="stack-detail" aria-live="polite">
+          <p class="stack-prompt" hidden>Select a box in the diagram to see what it is.</p>
+          <div class="stack-articles">
+            <article id="stack-proxmox" data-node="proxmox">
+              <h3>Proxmox VE</h3>
+              <p class="meta">Hypervisor</p>
+              <p>The foundation of the homelab. Proxmox runs directly on the server hardware and hosts everything else as virtual machines and containers: a Docker VM and a small streaming container.</p>
+            </article>
+            <article id="stack-docker-vm" data-node="docker-vm">
+              <h3>Docker VM</h3>
+              <p class="meta">Virtual machine &middot; on Proxmox</p>
+              <p>The main virtual machine. It runs Tailscale for remote access and Docker, which hosts all nine services.</p>
+            </article>
+            <article id="stack-moonlight" data-node="moonlight">
+              <h3>Streaming container</h3>
+              <p class="meta">Lightweight container &middot; on Proxmox</p>
+              <p>A small, lightweight container that streams to my TV using Moonlight.</p>
+            </article>
+            <article id="stack-tailscale" data-node="tailscale">
+              <h3>Tailscale</h3>
+              <p class="meta">VPN &middot; in the Docker VM</p>
+              <p>Puts the Docker VM on my private Tailscale network, so I can reach my services securely from anywhere.</p>
+            </article>
+            <article id="stack-docker" data-node="docker">
+              <h3>Docker</h3>
+              <p class="meta">Container runtime &middot; in the Docker VM</p>
+              <p>Runs each service as an isolated container, grouped into nine stacks.</p>
+            </article>
+            <article id="stack-homepage" data-node="homepage">
+              <h3>Homepage</h3>
+              <p class="meta">Docker stack &middot; in Docker</p>
+              <p>A dashboard that puts links and status for all my services on one page.</p>
+            </article>
+            <article id="stack-nextcloud" data-node="nextcloud">
+              <h3>Nextcloud</h3>
+              <p class="meta">Docker stack &middot; in Docker</p>
+              <p>Self-hosted file sync and storage: my own cloud for files, calendars, and contacts.</p>
+            </article>
+            <article id="stack-nginx-proxy-manager" data-node="nginx-proxy-manager">
+              <h3>Nginx Proxy Manager</h3>
+              <p class="meta">Docker stack &middot; in Docker</p>
+              <p>A reverse proxy with a web interface. It routes each service's address to the right container and handles SSL certificates.</p>
+            </article>
+            <article id="stack-pgadmin" data-node="pgadmin">
+              <h3>pgAdmin</h3>
+              <p class="meta">Docker stack &middot; in Docker</p>
+              <p>A web interface for managing and querying PostgreSQL databases.</p>
+            </article>
+            <article id="stack-pi-hole" data-node="pi-hole">
+              <h3>Pi-hole</h3>
+              <p class="meta">Docker stack &middot; in Docker</p>
+              <p>A network-wide DNS sinkhole that blocks ads and trackers for every device that uses it for DNS.</p>
+            </article>
+            <article id="stack-postgres" data-node="postgres">
+              <h3>Postgres</h3>
+              <p class="meta">Docker stack &middot; in Docker</p>
+              <p>The PostgreSQL database server, for the services that need a relational database.</p>
+            </article>
+            <article id="stack-student-dashboard" data-node="student-dashboard">
+              <h3>Student Dashboard</h3>
+              <p class="meta">Docker stack &middot; in Docker</p>
+              <p>My Student Dashboard app, self-hosted. It's also on the <a href="projects.html">Projects</a> page.</p>
+            </article>
+            <article id="stack-study-tool" data-node="study-tool">
+              <h3>Study Tool</h3>
+              <p class="meta">Docker stack &middot; in Docker</p>
+              <p>My own study tool, self-hosted alongside the rest of the stack.</p>
+            </article>
+            <article id="stack-beszel" data-node="beszel">
+              <h3>Beszel</h3>
+              <p class="meta">Docker stack &middot; in Docker</p>
+              <p>A lightweight monitoring hub that tracks CPU, memory, disk, and container stats for the server.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
         <h2>Coming soon.</h2>
       </div>
-      <p>Networking and self-hosted services will be documented here.</p>
+      <p>Networking will be documented here.</p>
     </section>
   </main>
 
@@ -95,5 +224,6 @@
     }
   </script>
   <script type="module" src="js/homelab-viewer.js"></script>
+  <script src="js/homelab-stack.js"></script>
 </body>
 </html>
